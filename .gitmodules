@@ -1,0 +1,4 @@
+[submodule "micropython"]
+	path = micropython
+	url = /micropython/micropython.git
+	ignore = dirty
