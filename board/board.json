@@ -1,0 +1,18 @@
+{
+    "deploy": [
+        "deploy.md"
+    ],
+    "docs": "",
+    "features": [
+        "Dual-core",
+        "External Flash",
+        "USB"
+    ],
+    "images": [
+    ],
+    "mcu": "rp2040",
+    "product": "Your Project Name Here",
+    "thumbnail": "",
+    "url": "",
+    "vendor": ""
+}

@@ -1,0 +1,40 @@
+# .gitlab-ci.yml
+
+variables:
+  GIT_SUBMODULE_STRATEGY: "normal"
+  BUILD_VERBOSE: "1"
+  DEBIAN_FRONTEND: "noninteractive"
+
+stages:
+  - build
+
+# default:
+#   image: alpine
+#   before_script:
+#     - apk add bash git cmake build-base gcc-arm-none-eabi libffi pkgconf
+
+default:
+  image: ubuntu
+  cache:
+    - key: apt
+      paths:
+        - /var/cache/apt/ #cached package archives
+        - /var/lib/apt/lists/ #cached packaged index
+    - key: mpy-cross
+      paths:
+        - micropython/mpy-cross/build/
+    - key: app-$CI_COMMIT_REF_SLUG
+      paths:
+        - micropython/ports/rp2/build-*/
+  before_script:
+    - rm -f /etc/apt/apt.conf.d/docker-clean
+    - ./tools.sh install_build_tools --quiet --yes
+
+build:
+  stage: build
+  script:
+    - ./tools.sh build_release
+  artifacts:
+    paths:
+      - build/firmware.uf2
+
