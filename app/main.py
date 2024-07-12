@@ -1,3 +1,15 @@
+
+### Example Package Import ###
+from foolib import foo
+foo()
+
+
+### Example Single-File Import ###
+from bar import bar
+bar()
+
+
+### Example Direct Code, using RP2 PIO Blinky ###
 from machine import Pin
 import rp2
 

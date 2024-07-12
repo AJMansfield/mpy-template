@@ -79,6 +79,9 @@ function rename_project {
            -e "s/${old_name_file}/${new_name_file}/g"\
            "$PROJECT_DIR/$f"
   done
+
+  # apply self-modifications:
+  source "$PROJECT_DIR/tools.sh"
 }
 
 # Check if script is being sourced (`source tools.sh`) and exit if so -- leaving the functions as first-order commands to be invoked later.

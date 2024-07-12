@@ -1,2 +1,4 @@
+__all__ = ['foo']
+
 def foo():
-    print("bar")
+    print("foo")
