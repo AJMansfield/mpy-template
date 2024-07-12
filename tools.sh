@@ -81,7 +81,9 @@ function rename_project {
   done
 
   # apply self-modifications:
-  source "$PROJECT_DIR/tools.sh"
+  if ! [ $RUNNING_AS_SUBCOMMAND ]; then
+    source "$PROJECT_DIR/tools.sh"
+  fi
 }
 
 # Check if script is being sourced (`source tools.sh`) and exit if so -- leaving the functions as first-order commands to be invoked later.
@@ -97,7 +99,7 @@ fi
 # Snippet from https://stackoverflow.com/a/37257634/1324631
 if declare -f "$1" >/dev/null 2>&1; then
   # invoke that function, passing arguments through
-  "$@" # same as "$1" "$2" "$3" ... for full argument list
+  RUNNING_AS_SUBCOMMAND=true "$@" # same as "$1" "$2" "$3" ... for full argument list
 else
   echo "Subcommand $1 not recognized." >&2
   echo "Valid subcommands:" >&2
